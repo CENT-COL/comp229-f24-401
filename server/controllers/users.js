@@ -1,4 +1,5 @@
 const User = require('../models/users');
+const generateToken = require('../utils/jwt');
 
 
 // Register a new user
@@ -8,7 +9,9 @@ exports.registerUser = async(req, res) => {
         const user = new User({username, email, password});
         await user.save();
 
-        res.status(201).json({message: "User registered successfully"});
+        const token = generateToken(user);
+
+        res.status(201).json({message: "User registered successfully", token});
     } catch (error) {
         res.status(500).json({message: error.message});
     }
@@ -30,7 +33,9 @@ exports.loginUser = async(req, res) => {
             return res.status(400).json({message: "Invalid credentials"});
         }
 
-        res.status(200).json({message: "User logged in successfully"});
+        const token = generateToken(user);
+
+        res.status(200).json({message: "User logged in successfully", token});
     } catch (error) {
         res.status(500).json({message: error.message});
     }
