@@ -1,8 +1,16 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+dotenv.config();
+
 //Instantiate my DB
-mongoose.connect('mongodb://localhost:27017/mern');
+mongoose.connect(process.env.MONGODB_URL);
+
+//Mongoose error check
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Database'));
 
 const app = express();
 const PORT = process.env.PORT || 3000;
