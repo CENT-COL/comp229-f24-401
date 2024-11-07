@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -5,9 +6,32 @@ import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact';
 import Services from './pages/services';
-import Projects from './pages/projects';
+import ProjectList from './pages/project-list';
+import Register from './pages/register';
+import Login from './pages/login';
 
 function App() {
+
+  const [user, setUser] = useState(() => {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    return token && username ? { username } : null;
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    if (token && username) {
+      setUser({ username });
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    setUser(null);
+  }
+
   return (
     <>
     <Router>
@@ -33,8 +57,26 @@ function App() {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">Register</li>
-              <li className="nav-item">Login</li>
+              {user ? (
+                <>
+                  <li className="nav-item">
+                  <span className="navbar-text mr-3">Welcome, {user.username}</span>
+                  </li>
+                  <li className="nav-item">
+                    <button className="btn btn-outline secondary" onClick={handleLogout}>Logout</button>
+                  </li>
+                </>
+              ): (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">Register</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                </>
+              )}
+              
             </ul>
           </div>
         </nav>
@@ -46,7 +88,9 @@ function App() {
         <Route path="/about" element = {<About/>} />
         <Route path="/contact" element = {<Contact />} />
         <Route path="/services" element = {<Services />} />
-        <Route path="/projects" element = { <Projects />} />
+        <Route path="/projects" element = { <ProjectList />} />
+        <Route path="/register" element = { <Register />} />
+        <Route path="/login" element = { <Login setUser={setUser} />} />
       </Routes>
     </Router>
     </>
