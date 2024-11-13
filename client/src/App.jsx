@@ -9,6 +9,7 @@ import Services from './pages/services';
 import ProjectList from './pages/project-list';
 import Register from './pages/register';
 import Login from './pages/login';
+import ProjectDetails from './pages/project-details';
 
 function App() {
 
@@ -89,8 +90,11 @@ function App() {
         <Route path="/contact" element = {<Contact />} />
         <Route path="/services" element = {<Services />} />
         <Route path="/projects" element = { <ProjectList />} />
+        <Route path="/project-details" element = { <ProjectDetails />} />
+        <Route path="/project-details/:id" element = { <ProjectDetails />} />
         <Route path="/register" element = { <Register />} />
         <Route path="/login" element = { <Login setUser={setUser} />} />
+
       </Routes>
     </Router>
     </>

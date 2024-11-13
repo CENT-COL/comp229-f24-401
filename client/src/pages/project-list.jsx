@@ -83,7 +83,7 @@ const ProjectList = () => {
                                 <td>{new Date(project.endDate).toLocaleDateString()}</td>
                                 <td>
                                     <button className="btn btn-secondary mr-2"
-                                        onClick={() => navigate(`/projects/${project._id}`)}
+                                        onClick={() => navigate(`/project-details/${project._id}`)}
                                     >Update</button>
                                     <button className="btn btn-danger"
                                         onClick={() => handleDelete(project._id)}
