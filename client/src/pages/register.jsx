@@ -75,7 +75,7 @@ const Register = () => {
     }
 
     const verify2FASetup = async () => {
-        const response = await fetch(`${apiURL}/users/verify2FASetup`, {
+        const response = await fetch(`${apiURL}/users/verify2FA`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
