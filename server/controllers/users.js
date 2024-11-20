@@ -38,7 +38,7 @@ exports.loginUser = async(req, res) => {
 
         const token = generateToken(user);
 
-        res.status(200).json({message: "User logged in successfully", token, username: user.username});
+        res.status(200).json({message: "User logged in successfully", token, username: user.username, is2FAEnabled: user.is2FAEnabled});
     } catch (error) {
         res.status(500).json({message: error.message});
     }
