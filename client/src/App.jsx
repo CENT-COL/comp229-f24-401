@@ -10,6 +10,7 @@ import ProjectList from './pages/project-list';
 import Register from './pages/register';
 import Login from './pages/login';
 import ProjectDetails from './pages/project-details';
+import WebSocketComponent from './pages/websocket';
 
 function App() {
 
@@ -46,6 +47,9 @@ function App() {
               </li>
               <li className="nav-item">
                 <Link className='nav-link' to="/about">About</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/wschat">WebSockets</Link>
               </li>
               <li className="nav-item">
                 <Link className='nav-link' to="/services">Services</Link>
@@ -94,6 +98,7 @@ function App() {
         <Route path="/project-details/:id" element = { <ProjectDetails />} />
         <Route path="/register" element = { <Register />} />
         <Route path="/login" element = { <Login setUser={setUser} />} />
+        <Route path="/wschat" element={<WebSocketComponent />} />
 
       </Routes>
     </Router>
