@@ -8,10 +8,10 @@
     "server"
   ],
   "scripts": {
-    "start": "npx npm-run-all --parallel start:client start:server",
+    "start": "npm-run-all --parallel start:client start:server",
     "start:client": "npm --prefix client run dev",
     "start:server": "npm --prefix server run dev",
-    "build": "npm install --legacy-peer-deps && npm run build:client && npm run build:server",
+    "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm install --legacy-peer-deps && npx vite build",
     "build:server": "echo 'No build step for the server'"
   },
