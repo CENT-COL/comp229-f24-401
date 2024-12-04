@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 // adding websockets
 const http = require('http');
@@ -140,6 +141,14 @@ app.use('/api/users', userRoutes);
 app.use('/api/data', (req, res) => {
     res.json({message: 'Hello from server'});
 })
+
+// Serve static assets for production
+if( process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname + "../client/dist")));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + "../client/dist/index.html"));
+    });
+}
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
