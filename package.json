@@ -8,17 +8,19 @@
     "server"
   ],
   "scripts": {
-    "start": "npm-run-all --parallel start:client start:server",
+    "dev": "npm-run-all --parallel start:client start:server",
+    "start": "node ./server/server.js",
     "start:client": "npm --prefix client run dev",
     "start:server": "npm --prefix server run dev",
-    "build": "npm-run-all --parallel build:client build:server",
-    "build:client": "npm --prefix client run build",
-    "build:server": "npm --prefix server run build"
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "echo 'No build step for the client'",
+    "build:server": "echo 'No build step for the server'"
   },
   "author": "Thiago Castilho",
   "license": "ISC",
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "vite": "^6.0.2"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
