@@ -64,7 +64,7 @@ const ProjectList = () => {
 
             {projects.length > 0 ? (
 
-                <table className="table table-striped">
+                <table data-cy="project-list" className="table table-striped">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -76,7 +76,7 @@ const ProjectList = () => {
                     </thead>
                     <tbody>
                         {projects.map((project) => (
-                            <tr key={project._id}>
+                            <tr data-cy="project-item" key={project._id}>
                                 <td>{project.name}</td>
                                 <td>{project.description}</td>
                                 <td>{new Date(project.startDate).toLocaleDateString()}</td>
