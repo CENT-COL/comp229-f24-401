@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "build": "echo 'No build step for the server'"
+    "build": "echo 'No build step for the server'",
+    "test": "jest --passWithNoTests --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
